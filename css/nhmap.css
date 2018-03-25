@@ -1,0 +1,124 @@
+/* Fonts uses google font api */
+html, body {
+    font-family: 'Lato', sans-serif;
+    color: #2d3c49;
+    font-weight: 300;
+    font-size: 16px;
+    background-color: #CCC;
+    height: 100%;
+}
+
+img, object, embed, video {
+  max-width: 100%;
+}
+
+.text-upper {
+  text-transform: uppercase;
+}
+
+.text-muted {
+  color: #7d97ad;
+}
+
+.text-thin {
+  font-weight: 300;
+}
+
+.title-h1 {
+  font-size: 30px;
+}
+
+.title-h2 {
+  font-size: 24px;
+}
+
+.title-h3 {
+  font-size: 24px;
+}
+
+.title-h4 {
+  font-size: 16px;
+}
+
+/* Default size is xs. Fonts are set to match the mock at medium and large
+resolutions or devide widths. */
+@media screen and (min-width: 760px) {
+  .title-h1 {
+    font-size: 60px;
+  }
+
+  .title-h2 {
+    font-size: 36px;
+  }
+
+  .title-h3 {
+    font-size: 36px;
+  }
+
+  .title-h4 {
+    font-size: 20px;
+  }
+}
+
+/* Add margins and keep width to normal desktop width for wider screens */
+@media screen and (min-width: 970px) {
+  .container {
+    max-width: 970px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.img-project {
+    margin: 0 auto;
+}
+
+.title-img {
+    margin-top: 10px;
+    width: 120px;
+    max-width: 100%;
+}
+
+hr {
+  height: 4px;
+  background-color: #7d97ad;
+}
+
+/*Shows links without underline and with the right color */
+nav a {
+  display: block;
+  color: #2d3c49;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+#map {
+  height: 600px;
+}
+
+.options-box {
+  background: #e7e7e7;  /* #fff; */
+  border: 1px solid #7d97ad;  /*#999;*/
+  color: #2d3c49;
+  border-radius: 5px;
+  height:100%;
+  line-height: 15px;
+  padding: 5px 15px 5px 15px;  /* top right bottom left */
+  text-align: left;
+  margin-bottom: 5px;
+  /*width: 120px;*/
+  hover:hand;
+}
+
+.options-box:hover{
+  background-color: #aff;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}

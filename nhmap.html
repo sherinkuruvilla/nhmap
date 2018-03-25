@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<!--  Bootstrap code from Sherin Kuruvilla's prior
+    Udacity project on Flex Flow designs -->
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width initial-scale=1">
+    <title> Neighbourhood Map - Udacity Project FSWD Project #6 </title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/nhmap.css" rel="stylesheet">
+  </head>
+
+  <body>
+<!--  The top level is the container class from Bootstrap.
+    Each row, has the proper columns width defined for
+    phones (<768px), pads (768-970 px), or normal desktop.
+    These sizes are provided by default in bootstrap.
+    The heading row will size differently and fonts will scale
+    for smaller devices, and show a larger font
+    for medium and large devices
+-->
+    <div class="container">
+
+<!--  header section -->
+    <div class="row">
+        <header>
+            <div class="col-xs-2 col-sm-4 col-md-6">
+                <img src="img/map.svg" class="img-responsive title-img" alt="Udacity Logo">
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6 text-right text-uppercase">
+                <h1 class="text-thin title-h1">NHMAP</h1>
+                <h4 class="title-h4">Neighbourhood Map</h4>
+            </div>
+        </header>
+    </div>
+
+<!-- header row separating header and body -->
+    <div class="row">
+        <div class="col-md-12 text-muted">
+            <h2 class="title-h2">Locations</h2>
+        </div>
+    </div>
+
+    <div class="row">
+<!-- The locations menu shows the list of locations -->
+        <div class="col-xs-12 col-md-3">
+            <ul data-bind="foreach: initialList">
+                <div class="options-box" data-bind="text: title, click: setLocation"></div>
+            </ul>
+            <br><br>
+            <input type="button" id="show-list-btn" value="Show Listing" class="options-box" data-bind="click: showListing">
+            &nbsp;&nbsp;
+            <input type="button" id="hide-list-btn" value="Hide Listing" class="options-box" data-bind="click: hideListing">
+            <br><br>
+        </div>
+
+<!-- Google Map object is populated by the initMap call back function
+from the google API -->
+        <div id="map" class="col-xs-12 col-md-9"></div>
+        </div>
+
+
+    </div>
+
+
+    <script src="js/libs/jquery-3.3.1.min.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaJFKlfcqNJBXhUqBC6QsHI8cm5Y2zdBU&v=3&callback=mapViewModel.initMap"></script>
+    <script src="js/libs/knockout-3.2.0.js"></script>
+    <script src="js/viewLocation.js"></script>
+    <script src="js/viewMap.js"></script>
+
+  </body>
+</html>
