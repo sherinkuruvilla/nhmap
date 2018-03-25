@@ -116,6 +116,7 @@ nav a {
 
 .options-box:hover{
   background-color: #aff;
+  cursor:pointer;
 }
 
 ul {

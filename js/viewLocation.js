@@ -20,7 +20,7 @@ var locations = [
         types: [{type:'Establishment'}, {type:'School'}]},
         {location: {lat: 42.232485, lng: -83.739701},
         address: '3776 S State St, Ann Arbor, MI 48108',
-        title: 'Black Rock Grill Ann Arbor', type: 'Restaurant',
+        title: 'Black Rock Grill', type: 'Restaurant',
         types: [{type:'Establishment'}, {type:'Restaurant'}]},
         {location: {lat: 42.476822, lng: -83.149995},
         address: '8450 W 10 Mile Rd, Royal Oak, MI 48067',
