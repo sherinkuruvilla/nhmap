@@ -52,7 +52,7 @@
 
 
             <ul data-bind="foreach: initialList">
-                <div class="options-box" data-bind="text: title, click: setLocation"></div>
+                <div class="options-box" data-bind="text: title, click: showWindow"></div>
             </ul>
             <br><br>
             <input type="button" id="show-list-btn" value="Show All" class="options-box" data-bind="click: showListing">
@@ -72,12 +72,16 @@ from the google API -->
 
     <script src="js/libs/jquery-3.3.1.min.js"></script>
     <script src="js/libs/bootstrap.min.js"></script>
-    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaJFKlfcqNJBXhUqBC6QsHI8cm5Y2zdBU&v=3&callback=mapViewModel.initMap"></script>
-    <script src="js/libs/knockout-3.2.0.js"></script>
+    <!--async defer-->
 
-    <script src="js/modelLocations.js"></script>
-    <script src="js/viewLocation.js"></script>
-    <script src="js/viewMap.js"></script>
+    <script async defer src="js/modelLocations.js"></script>
+
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaJFKlfcqNJBXhUqBC6QsHI8cm5Y2zdBU&v=3&callback=mapViewModel.initMap"></script>
+
+    <script src="js/libs/knockout-3.2.0.js"></script>
+    <script async defer src="js/viewLocation.js"></script>
+    <script async defer src="js/viewMap.js"></script>
 
   </body>
 </html>

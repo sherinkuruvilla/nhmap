@@ -1,16 +1,13 @@
 //Original code from Udacity JS course by Ben Jaffe
 //Modified by Sherin Kuruvilla Mar 25 2018
 
-var Location = function(data){
+var Location = function(data, index){
     this.location = ko.observable(data.location);
     this.address = ko.observable(data.address);
     this.title = ko.observable(data.title);
     this.types = ko.observableArray(data.types);
     this.type = ko.observable(data.type);
-
-    this.locationString = ko.computed(function(){
-        //return JSON.stringify(this.location());
-    }, this);
+    this.id = ko.observable(index);
 };
 
 // initialize an empty array to hold
@@ -21,15 +18,21 @@ var viewLocationModel = function(){
     this.initialList = ko.observableArray([]);
     this.locationTypes = ko.observableArray([]);  //available types for dropdown
     this.selectedType = ko.observable();  //selected value from the filter drop down
+    //alert(markers.length);
+
+    var i=0;
     locations.forEach(function(locationItem){
-        self.initialList.push( new Location(locationItem));
+        self.initialList.push(new Location(locationItem, i));
+        i++;
+       // alert(marker.title);
     });
     var uniqueTypes = [...new Set(locations.map(item => item.type))];
-    uniqueTypes.forEach(function(locationItem){
-          self.locationTypes.push(locationItem);
+    uniqueTypes.forEach(function(locationType){
+          self.locationTypes.push(locationType);
     });
 
     this.currentLocation = ko.observable(this.initialList()[0]);
+
     setLocation = function(clickedLocation){
         self.currentLocation(clickedLocation);
     };
@@ -43,8 +46,11 @@ var viewLocationModel = function(){
         var type=this.selectedType();
         mapViewModel.filterListing(type);
     };
-    showInfoWindow = function(clickedLocation){
-        mapViewModel.hideListing();
+    showWindow = function(clickedLocation){
+        self.currentLocation(clickedLocation);
+        //alert(self.currentLocation().id());
+        mapViewModel.showWindow(self.currentLocation().id());
+        //alert(self.currentLocation.id);
     };
 };
 

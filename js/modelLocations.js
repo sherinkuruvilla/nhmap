@@ -29,3 +29,4 @@ var locations = [
         title: 'Sherin Abode', type: 'Residence',
         types: [{type:'Residence'}, {type:'Home'}]}
 ];
+

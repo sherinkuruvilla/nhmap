@@ -48,7 +48,20 @@ var mapViewModel = {
                     '<br>' + thisMarker.type);
         thisInfoWindow.open(map, thisMarker);
     },
+    showWindow:  function(id){
+        this.showMarker(id);
+        mapViewModel.showInfoWindow(markers[id], infoWindow);
+    },
+    showMarker: function(id){
+        var bounds = new google.maps.LatLngBounds();
+        this.hideListing();
+        markers[id].setMap(map);
+        markers[id].setAnimation(google.maps.Animation.DROP);
+        bounds.extend(markers[id].position);
+        map.fitBounds(bounds);
+    },
     showListing: function(){
+        infoWindow.close();
         var bounds = new google.maps.LatLngBounds();
         for (var i=0; i<markers.length; i++ ) {
             markers[i].setMap(map);
@@ -58,6 +71,7 @@ var mapViewModel = {
         map.fitBounds(bounds);
     },
     hideListing: function(){
+        infoWindow.close();
         for (var i=0; i<markers.length; i++ ) {
             markers[i].setMap(null);
             markers[i].setAnimation(null);
