@@ -22,6 +22,7 @@ var mapViewModel = {
         });
 
         this.loadMarkers();
+        this.showListing();
     },
     loadMarkers: function(){
         infoWindow = new google.maps.InfoWindow();
@@ -39,6 +40,7 @@ var mapViewModel = {
 
             marker.addListener('click', function(){
                 mapViewModel.showInfoWindow(this, infoWindow);
+                mapViewModel.animate(this);
             });
         };
     },
@@ -52,13 +54,15 @@ var mapViewModel = {
         this.showMarker(id);
         mapViewModel.showInfoWindow(markers[id], infoWindow);
     },
+    animate: function(thisMarker){
+        thisMarker.setAnimation(google.maps.Animation.BOUNCE);
+    },
     showMarker: function(id){
         var bounds = new google.maps.LatLngBounds();
         this.hideListing();
         markers[id].setMap(map);
         markers[id].setAnimation(google.maps.Animation.DROP);
         bounds.extend(markers[id].position);
-        map.fitBounds(bounds);
     },
     showListing: function(){
         infoWindow.close();
@@ -84,9 +88,7 @@ var mapViewModel = {
             if (type === markers[i].type) {
             markers[i].setMap(map);
             markers[i].setAnimation(google.maps.Animation.DROP);
-            bounds.extend(markers[i].position);
             };
         };
-        map.fitBounds(bounds);
     }
 };
