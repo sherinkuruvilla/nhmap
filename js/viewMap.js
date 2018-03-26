@@ -44,22 +44,34 @@ var mapViewModel = {
             });
         };
     },
-    showInfoWindow:  function(thisMarker, thisInfoWindow){
-        thisInfoWindow.marker = thisMarker;
-        thisInfoWindow.setContent(thisMarker.title + '<br>' + thisMarker.address +
-                    '<br>' + thisMarker.type);
-        thisInfoWindow.open(map, thisMarker);
+    showInfoWindow:  function(thisMarker){
+        infoWindow.marker = thisMarker;
+        infoWindow.setContent('<div id="info-content">' + thisMarker.title
+                    + '<br>' + thisMarker.address
+                    + '<br>' + thisMarker.type
+                    + '</div>');
+        infoWindow.open(map, thisMarker);
+        loadFourSquare(thisMarker.position, thisMarker.title);
+    },
+    showFourSquareInfo: function(htmlstr){
+        divstr = '<div id="foursquare-content">' + htmlstr + '</div>';
+        infoWindow.setContent(infoWindow.content+divstr);
+        //infoWindow.open(map, currentMarker);
+        //alert(htmlstr);
     },
     showWindow:  function(id){
         this.showMarker(id);
-        mapViewModel.showInfoWindow(markers[id], infoWindow);
+        mapViewModel.showInfoWindow(markers[id]);
     },
     animate: function(thisMarker){
+        this.hideAnimation();
         thisMarker.setAnimation(google.maps.Animation.BOUNCE);
     },
+    currentMarker: markers[0],
     showMarker: function(id){
         var bounds = new google.maps.LatLngBounds();
         this.hideListing();
+        currentMarker = markers[id];
         markers[id].setMap(map);
         markers[id].setAnimation(google.maps.Animation.DROP);
         bounds.extend(markers[id].position);
@@ -78,6 +90,11 @@ var mapViewModel = {
         infoWindow.close();
         for (var i=0; i<markers.length; i++ ) {
             markers[i].setMap(null);
+            markers[i].setAnimation(null);
+        };
+    },
+    hideAnimation: function(){
+        for (var i=0; i<markers.length; i++ ) {
             markers[i].setAnimation(null);
         };
     },

@@ -140,3 +140,20 @@ ul {
 #filter-btn:hover{
   cursor:pointer;
 }
+
+
+#info-content{
+  border: 1px solid #7d97ad;
+  padding: 5 px;
+}
+
+#foursquare-content{
+  margin-top:15px;
+}
+
+#foursquare-content::before {
+    content: "[FourSquare]";
+    font-size: 0.7em;
+    color: grey;
+    margin-top:55px;
+}
