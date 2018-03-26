@@ -26,12 +26,12 @@
 <!--  header section -->
     <div class="row">
         <header>
-            <div class="col-xs-2 col-sm-4 col-md-6">
+            <div class="col-xs-2 col-sm-4 col-md-4">
                 <img src="img/map.svg" class="img-responsive title-img" alt="Udacity Logo">
             </div>
-            <div class="col-xs-10 col-sm-8 col-md-6 text-right text-uppercase">
-                <h1 class="text-thin title-h1">NHMAP</h1>
-                <h4 class="title-h4">Neighbourhood Map</h4>
+            <div class="col-xs-10 col-sm-8 col-md-8 text-right text-uppercase">
+                <h1 class="text-thin title-h1">Neighbourhood</h1>
+                <h4 class="title-h4">By Sherin Kuruvilla</h4>
             </div>
         </header>
     </div>
@@ -46,13 +46,18 @@
     <div class="row">
 <!-- The locations menu shows the list of locations -->
         <div class="col-xs-12 col-md-3">
+            <select data-bind="options: locationTypes, value: selectedType,
+                       optionsCaption: 'Choose...'" class="filter"></select>
+            <input type="button" id="filter-btn" value="Filter" data-bind="click: filterListing"> <br><br>
+
+
             <ul data-bind="foreach: initialList">
                 <div class="options-box" data-bind="text: title, click: setLocation"></div>
             </ul>
             <br><br>
-            <input type="button" id="show-list-btn" value="Show Listing" class="options-box" data-bind="click: showListing">
+            <input type="button" id="show-list-btn" value="Show All" class="options-box" data-bind="click: showListing">
             &nbsp;&nbsp;
-            <input type="button" id="hide-list-btn" value="Hide Listing" class="options-box" data-bind="click: hideListing">
+            <input type="button" id="hide-list-btn" value="Hide All" class="options-box" data-bind="click: hideListing">
             <br><br>
         </div>
 
@@ -69,6 +74,8 @@ from the google API -->
     <script src="js/libs/bootstrap.min.js"></script>
     <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaJFKlfcqNJBXhUqBC6QsHI8cm5Y2zdBU&v=3&callback=mapViewModel.initMap"></script>
     <script src="js/libs/knockout-3.2.0.js"></script>
+
+    <script src="js/modelLocations.js"></script>
     <script src="js/viewLocation.js"></script>
     <script src="js/viewMap.js"></script>
 

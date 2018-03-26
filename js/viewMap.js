@@ -8,6 +8,7 @@ var map;
 // the markers to plot on the map
 var markers = [];
 
+var infoWindow;
 
 
 //Handles all the View Model functions for the map view
@@ -20,15 +21,14 @@ var mapViewModel = {
             zoom: 12
         });
 
-        var infoWindow = new google.maps.InfoWindow();
-
-        //var bounds = new google.maps.LatLngBounds();
-
+        this.loadMarkers();
+    },
+    loadMarkers: function(){
+        infoWindow = new google.maps.InfoWindow();
         for (var i=0; i<locations.length; i++ ) {
             var marker = new google.maps.Marker({
                 position: locations[i].location,
                 animation: google.maps.Animation.DROP,
-                //map: map,
                 title: locations[i].title,
                 address: locations[i].address,
                 type: locations[i].type,
@@ -37,17 +37,12 @@ var mapViewModel = {
 
             markers.push(marker);
 
-            //bounds.extend(marker.position);
-
             marker.addListener('click', function(){
-                mapViewModel.notify(this, infoWindow);
+                mapViewModel.showInfoWindow(this, infoWindow);
             });
-        }
-
-        //map.fitBounds(bounds);
-
+        };
     },
-    notify:  function(thisMarker, thisInfoWindow){
+    showInfoWindow:  function(thisMarker, thisInfoWindow){
         thisInfoWindow.marker = thisMarker;
         thisInfoWindow.setContent(thisMarker.title + '<br>' + thisMarker.address +
                     '<br>' + thisMarker.type);
@@ -57,15 +52,27 @@ var mapViewModel = {
         var bounds = new google.maps.LatLngBounds();
         for (var i=0; i<markers.length; i++ ) {
             markers[i].setMap(map);
+            markers[i].setAnimation(google.maps.Animation.DROP);
             bounds.extend(markers[i].position);
         };
         map.fitBounds(bounds);
-        //alert('show listing map.js');
     },
     hideListing: function(){
         for (var i=0; i<markers.length; i++ ) {
             markers[i].setMap(null);
+            markers[i].setAnimation(null);
         };
-        //alert('hide listing map.js');
+    },
+    filterListing: function(type){
+        var bounds = new google.maps.LatLngBounds();
+        this.hideListing();
+        for (var i=0; i<markers.length; i++ ) {
+            if (type === markers[i].type) {
+            markers[i].setMap(map);
+            markers[i].setAnimation(google.maps.Animation.DROP);
+            bounds.extend(markers[i].position);
+            };
+        };
+        map.fitBounds(bounds);
     }
 };

@@ -1,5 +1,5 @@
 /* Fonts uses google font api */
-html, body {
+html, body, .filter, option {
     font-family: 'Lato', sans-serif;
     color: #2d3c49;
     font-weight: 300;
@@ -122,4 +122,21 @@ nav a {
 ul {
     padding: 0;
     list-style-type: none;
+}
+
+#filter-btn {
+  background: #7d97ad;  /* #fff; */
+  border: 1px solid #7d97ad;  /*#999;*/
+  color: #e7e7e7;
+  border-radius: 3px;
+  height:100%;
+  line-height: 5px;
+  padding: 8px 5px 8px 5px;  /* top right bottom left */
+  text-align: left;
+  margin-bottom: 5px;
+  /*width: 120px;*/
+}
+
+#filter-btn:hover{
+  cursor:pointer;
 }
