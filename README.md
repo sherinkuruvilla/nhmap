@@ -1,4 +1,9 @@
-# nhmap
+# Neighbourhood Map
+Neighbourbood is a single page application featuring a map of my neighborhood including a few of my favourite locations, third-party data about those locations and various ways to browse the content.
+
+## Installation
+From https://github.com/sherinkuruvilla/nhmap, download the code to the PC.
+From the downloaded folder, run index.html.   
 
 
 ## Features
