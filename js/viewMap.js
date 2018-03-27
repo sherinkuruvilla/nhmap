@@ -2,55 +2,72 @@
 //modified by Sherin Kuruvilla Mar 25 2018
 
 //map object returned by google maps JS api
-var map;
+let map;
 
 // initialize an empty array to hold
 // the markers to plot on the map
-var markers = [];
+let markers = [];
 
-var infoWindow;
+let infoWindow;
 
 
 //Handles all the View Model functions for the map view
-var mapViewModel = {
+let mapViewModel = {
     //callback function from google maps JS api
     //this function will populate all the markers
     initMap: function(){
+        try {
         map = new google.maps.Map(document.getElementById('map'),{
             center: {lat: 42.318542, lng: -83.534632},
             zoom: 12
         });
-
         this.loadMarkers();
         this.showListing();
+        }
+        catch(err) {
+            this.MAPApiError();
+        }
+    },
+    MAPApiError: function(){
+        $('#map').text('Maps could not be loaded.');
     },
     loadMarkers: function(){
-        infoWindow = new google.maps.InfoWindow();
-        for (var i=0; i<locations.length; i++ ) {
-            var marker = new google.maps.Marker({
-                position: locations[i].location,
-                animation: google.maps.Animation.DROP,
-                title: locations[i].title,
-                address: locations[i].address,
-                type: locations[i].type,
-                id: i
-            });
+        try {
+            infoWindow = new google.maps.InfoWindow();
+            for (let i=0; i<locations.length; i++ ) {
+                let marker = new google.maps.Marker({
+                    position: locations[i].location,
+                    animation: google.maps.Animation.DROP,
+                    title: locations[i].title,
+                    address: locations[i].address,
+                    type: locations[i].type,
+                    id: i
+                });
 
-            markers.push(marker);
+                markers.push(marker);
 
-            marker.addListener('click', function(){
-                mapViewModel.showInfoWindow(this, infoWindow);
-                mapViewModel.animate(this);
-            });
-        };
+                marker.addListener('click', function(){
+                    mapViewModel.showInfoWindow(this, infoWindow);
+                    mapViewModel.animate(this);
+                });
+            };
+        }
+        catch(err) {
+            this.MAPApiError();
+        }
     },
     showInfoWindow:  function(thisMarker){
+        try {
         infoWindow.marker = thisMarker;
         infoWindow.setContent('<div id="info-content">' + thisMarker.title
                     + '<br>' + thisMarker.address
                     + '<br>' + thisMarker.type
                     + '</div>');
         infoWindow.open(map, thisMarker);
+        }
+        catch(err) {
+            this.MAPApiError();
+        }
         loadFourSquare(thisMarker.position, thisMarker.title);
     },
     showFourSquareInfo: function(htmlstr){
@@ -64,12 +81,17 @@ var mapViewModel = {
         mapViewModel.showInfoWindow(markers[id]);
     },
     animate: function(thisMarker){
+        try {
         this.hideAnimation();
         thisMarker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+        catch(err) {
+            this.MAPApiError();
+        }
     },
     currentMarker: markers[0],
     showMarker: function(id){
-        var bounds = new google.maps.LatLngBounds();
+        let bounds = new google.maps.LatLngBounds();
         this.hideListing();
         currentMarker = markers[id];
         markers[id].setMap(map);
@@ -77,31 +99,36 @@ var mapViewModel = {
         bounds.extend(markers[id].position);
     },
     showListing: function(){
-        infoWindow.close();
-        var bounds = new google.maps.LatLngBounds();
-        for (var i=0; i<markers.length; i++ ) {
-            markers[i].setMap(map);
-            markers[i].setAnimation(google.maps.Animation.DROP);
-            bounds.extend(markers[i].position);
-        };
-        map.fitBounds(bounds);
+        try {
+            infoWindow.close();
+            let bounds = new google.maps.LatLngBounds();
+            for (let i=0; i<markers.length; i++ ) {
+                markers[i].setMap(map);
+                markers[i].setAnimation(google.maps.Animation.DROP);
+                bounds.extend(markers[i].position);
+            };
+            map.fitBounds(bounds);
+        }
+        catch(err) {
+            this.MAPApiError();
+        }
     },
     hideListing: function(){
         infoWindow.close();
-        for (var i=0; i<markers.length; i++ ) {
+        for (let i=0; i<markers.length; i++ ) {
             markers[i].setMap(null);
             markers[i].setAnimation(null);
         };
     },
     hideAnimation: function(){
-        for (var i=0; i<markers.length; i++ ) {
+        for (let i=0; i<markers.length; i++ ) {
             markers[i].setAnimation(null);
         };
     },
     filterListing: function(type){
-        var bounds = new google.maps.LatLngBounds();
+        let bounds = new google.maps.LatLngBounds();
         this.hideListing();
-        for (var i=0; i<markers.length; i++ ) {
+        for (let i=0; i<markers.length; i++ ) {
             if (type === markers[i].type) {
             markers[i].setMap(map);
             markers[i].setAnimation(google.maps.Animation.DROP);

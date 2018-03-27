@@ -1,5 +1,5 @@
 //model data containing all neighbourhood locations
-var locations = [
+const locations = [
         {location: {lat: 42.468795, lng: -83.259709},
         address: '24518 Lahser Rd, Southfield, MI 48033, USA',
         title: 'Detroit Marthoma Church', type: 'Establishment',
