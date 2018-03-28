@@ -62,8 +62,8 @@ let viewLocationModel = function(){
         locations.forEach(function(locationItem){
             if (locationItem.type == type) {
                 self.initialList.push(new Location(locationItem, i));
-                i++;
             };
+            i++;
            // alert(marker.title);
         });
         mapViewModel.filterListing(type);
