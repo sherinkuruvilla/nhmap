@@ -110,8 +110,6 @@ nav a {
   padding: 5px 15px 5px 15px;  /* top right bottom left */
   text-align: left;
   margin-bottom: 5px;
-  /*width: 120px;*/
-  hover:hand;
 }
 
 .options-box:hover{
@@ -144,7 +142,7 @@ ul {
 
 #info-content{
   border: 1px solid #7d97ad;
-  padding: 5 px;
+  padding: 5px;
 }
 
 #foursquare-content{

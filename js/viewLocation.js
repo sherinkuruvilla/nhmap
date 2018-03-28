@@ -7,13 +7,15 @@
 * @param {string} data - The location object literal
 * @param {string} index - The index of the location in the locations array
 */
-let Location = function(data, index){
-    this.location = ko.observable(data.location);
-    this.address = ko.observable(data.address);
-    this.title = ko.observable(data.title);
-    this.types = ko.observableArray(data.types);
-    this.type = ko.observable(data.type);
-    this.id = ko.observable(index);
+
+
+const Location = function(data, index){
+    this.location = data.location;
+    this.address = data.address;
+    this.title = data.title;
+    this.types = data.types;
+    this.type = data.type;
+    this.id = index;
 };
 
 // initialize an empty array to hold
@@ -24,13 +26,11 @@ let viewLocationModel = function(){
     this.initialList = ko.observableArray([]);
     this.locationTypes = ko.observableArray([]);  //available types for dropdown
     this.selectedType = ko.observable();  //selected value from the filter drop down
-    //alert(markers.length);
 
     let i=0;
     locations.forEach(function(locationItem){
         self.initialList.push(new Location(locationItem, i));
         i++;
-       // alert(marker.title);
     });
     const uniqueTypes = [...new Set(locations.map(item => item.type))];
     uniqueTypes.forEach(function(locationType){
@@ -48,7 +48,6 @@ let viewLocationModel = function(){
         locations.forEach(function(locationItem){
             self.initialList.push(new Location(locationItem, i));
             i++;
-           // alert(marker.title);
         });
         mapViewModel.showListing();
     };
@@ -64,15 +63,12 @@ let viewLocationModel = function(){
                 self.initialList.push(new Location(locationItem, i));
             };
             i++;
-           // alert(marker.title);
         });
         mapViewModel.filterListing(type);
     };
     showWindow = function(clickedLocation){
         self.currentLocation(clickedLocation);
-        //alert(self.currentLocation().id());
-        mapViewModel.showWindow(self.currentLocation().id());
-        //alert(self.currentLocation.id);
+        mapViewModel.showWindow(self.currentLocation().id);
     };
 };
 
