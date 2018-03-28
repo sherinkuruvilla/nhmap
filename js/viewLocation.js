@@ -43,6 +43,12 @@ let viewLocationModel = function(){
         self.currentLocation(clickedLocation);
     };
     showListing = function(){
+        let i=0;
+        locations.forEach(function(locationItem){
+            self.initialList.push(new Location(locationItem, i));
+            i++;
+           // alert(marker.title);
+        });
         mapViewModel.showListing();
     };
     hideListing = function(){
@@ -50,6 +56,15 @@ let viewLocationModel = function(){
     };
     filterListing = function(){
         let type=this.selectedType();
+        let i=0;
+        self.initialList([]);
+        locations.forEach(function(locationItem){
+            if (locationItem.type == type) {
+                self.initialList.push(new Location(locationItem, i));
+                i++;
+            };
+           // alert(marker.title);
+        });
         mapViewModel.filterListing(type);
     };
     showWindow = function(clickedLocation){
