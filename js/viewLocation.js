@@ -44,6 +44,7 @@ let viewLocationModel = function(){
     };
     showListing = function(){
         let i=0;
+        self.initialList([]);
         locations.forEach(function(locationItem){
             self.initialList.push(new Location(locationItem, i));
             i++;
